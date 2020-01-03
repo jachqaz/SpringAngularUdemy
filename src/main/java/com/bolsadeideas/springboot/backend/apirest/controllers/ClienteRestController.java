@@ -34,19 +34,30 @@ public class ClienteRestController {
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al realizar la consulta en la base de datos");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (cliente == null) {
             response.put("mensaje", "El cliente ID: ".concat(id.toString()).concat("no existe en la base de datos"));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
 
     @PostMapping("/clientes")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente create(@RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
+    public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+        Cliente clienteNew = null;
+        Map<String, Object> response = new HashMap<>();
+        try {
+            clienteNew = clienteService.save(cliente);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar el insert en la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("mensaje", "El cliente ha sido creado con exito");
+        response.put("cliente", clienteNew);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("/clientes/{id}")
