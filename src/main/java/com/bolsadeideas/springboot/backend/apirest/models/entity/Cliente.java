@@ -2,21 +2,20 @@ package com.bolsadeideas.springboot.backend.apirest.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellido;
     private String email;
-    @Column(name = "create_at")
-    @Temporal(TemporalType.DATE)
-    private String createAt;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -50,11 +49,16 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public String getCreateAt() {
+    @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
+    private Date createAt;
+
+    public Date getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(String createAt) {
+    public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
+
 }
