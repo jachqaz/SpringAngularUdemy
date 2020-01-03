@@ -37,7 +37,7 @@ public class ClienteRestController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (cliente == null) {
-            response.put("mensaje", "El cliente ID: ".concat(id.toString()).concat("no existe en la base de datos"));
+            response.put("mensaje", "El cliente ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
