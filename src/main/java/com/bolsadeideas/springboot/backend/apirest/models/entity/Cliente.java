@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.backend.apirest.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -62,6 +63,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
+    @NotNull(message = "no puede estar vacio")
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
@@ -74,9 +76,9 @@ public class Cliente implements Serializable {
         this.createAt = createAt;
     }
 
-    @PrePersist
-    public void prePersist() {
-        createAt = new Date();
-    }
+//    @PrePersist
+//    public void prePersist() {
+//        createAt = new Date();
+//    }
 
 }
