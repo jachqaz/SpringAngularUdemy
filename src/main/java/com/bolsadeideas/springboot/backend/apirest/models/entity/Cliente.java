@@ -29,6 +29,8 @@ public class Cliente implements Serializable {
     @Column(nullable = false, unique = false)
     private String email;
 
+    private String foto;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -81,4 +83,12 @@ public class Cliente implements Serializable {
 //        createAt = new Date();
 //    }
 
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 }
