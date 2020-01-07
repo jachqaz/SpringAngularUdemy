@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -140,7 +141,7 @@ public class ClienteRestController {
         Cliente cliente = clienteService.findById(id);
 
         if (!archivo.isEmpty()) {
-            String nombreArchivo = archivo.getOriginalFilename();
+            String nombreArchivo = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
             Path rutaArchivo = Paths.get("upload").resolve(nombreArchivo).toAbsolutePath();
             try {
                 Files.copy(archivo.getInputStream(), rutaArchivo);
@@ -151,7 +152,7 @@ public class ClienteRestController {
             }
             cliente.setFoto(nombreArchivo);
             clienteService.save(cliente);
-
+            response.put("cliente", cliente);
             response.put("mensaje", "Has subido correctamente la imagen" + nombreArchivo);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
