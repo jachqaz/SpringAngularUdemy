@@ -29,6 +29,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Qualifier("autenticationManager")
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private InfoAdicionalToken infoAdicionalToken;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()")
@@ -48,7 +51,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter()));
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdicionalToken, accessTokenConverter()));
 
         endpoints.authenticationManager(authenticationManager)
                 .tokenStore(tokenStore())
@@ -64,7 +67,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
+        jwtAccessTokenConverter.setSigningKey(JwtConfig.RSA_PRIVADA);
+        jwtAccessTokenConverter.setVerifierKey(JwtConfig.RSA_PUBLICA);
         return jwtAccessTokenConverter;
     }
 }
