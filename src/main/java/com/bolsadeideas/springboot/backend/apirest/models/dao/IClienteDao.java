@@ -1,4 +1,4 @@
-package com.bolsadeideas.springboot.backend.apirest.modles.dao;
+package com.bolsadeideas.springboot.backend.apirest.models.dao;
 
 import com.bolsadeideas.springboot.backend.apirest.models.entity.Cliente;
 import com.bolsadeideas.springboot.backend.apirest.models.entity.Region;
