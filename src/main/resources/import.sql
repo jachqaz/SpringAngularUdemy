@@ -3,7 +3,7 @@ INSERT INTO clientes(region_id,apellido, create_at, email, nombre) VALUES (1,'Gu
 INSERT INTO clientes(region_id,apellido, create_at, email, nombre) VALUES (1,'Guzman1', '2018-01-01', 'A1@G.com', 'Andres1');
 INSERT INTO clientes(region_id,apellido, create_at, email, nombre) VALUES (1,'Guzman2', '2018-01-01', 'A2@G.com', 'Andres2');
 INSERT INTO usuarios(apellido, email, enabled, nombre, password, username) VALUES ('Guzman','A@G.com',1,'Andres','$2a$10$I8pIRcnWl5coJLzr2xFvtu8yxMJbwDtbiskoLzFQurQt2XHMeLwgO','andres');
-INSERT INTO usuarios(apellido, email, enabled, nombre, password, username) VALUES ('Guzman1','A1@G.com',1,'Andres1','$2a$10$CRCQHUGlQRkWXVs9jcoztOd8/5Q4g.EURcwbWPuZdgJdcz62h0y2a','andres1');
+INSERT INTO usuarios(apellido, email, enabled, nombre, password, username) VALUES ('Guzman1','A1@G.com',1,'Andres1','$2a$10$CRCQHUGlQRkWXVs9jcoztOd8/5Q4g.EURcwbWPuZdgJdcz62h0y2a','admin');
 INSERT INTO roles(nombre) VALUES ('ROLE_USER');
 INSERT INTO roles(nombre) VALUES ('ROLE_ADMIN');
 INSERT INTO usuarios_roles(usuario_id, roles_id) VALUES (1,1);
