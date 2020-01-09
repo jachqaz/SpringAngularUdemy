@@ -1,11 +1,12 @@
 package com.bolsadeideas.springboot.backend.apirest.models.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "productos")
-public class Producto {
+public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
