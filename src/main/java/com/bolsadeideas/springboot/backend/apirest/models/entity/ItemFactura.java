@@ -12,10 +12,14 @@ public class ItemFactura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Integer cantidad;
 
-    public Double calcularImporte() {
-        return cantidad.doubleValue();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Producto producto;
+
+    public Double getImporte() {
+        return cantidad.doubleValue() * producto.getPrecio();
     }
 
     public Long getId() {
@@ -34,4 +38,11 @@ public class ItemFactura implements Serializable {
         this.cantidad = cantidad;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }
